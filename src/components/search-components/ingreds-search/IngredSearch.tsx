@@ -37,9 +37,7 @@ const IngredSearch = () => {
     try {
       const ingredsForReq = ingredients.filter((el) => el.selected);
       const ingredString = ingredsForReq.map((el) => el.name).join(',+');
-      const { data }: { data: Recipe[] } = await getRecipesByIngredients(
-        ingredString
-      );
+      const data = await getRecipesByIngredients(ingredString);
       dispatch(setRecipes(data));
       dispatch(resetSelected());
       navigate('/recipes');

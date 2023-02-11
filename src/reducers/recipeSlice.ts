@@ -5,11 +5,13 @@ import { Recipe } from '../types';
 export interface RecipeState {
   apiRecipes: Recipe[];
   myRecipes: Recipe[];
+  randomRecipes: Recipe[];
 }
 
 const initialState: RecipeState = {
   apiRecipes: [],
   myRecipes: [],
+  randomRecipes: [],
 };
 
 const recipeSlice = createSlice({
@@ -22,9 +24,12 @@ const recipeSlice = createSlice({
       );
       state.apiRecipes = [...state.apiRecipes, ...excludeMatching];
     },
+    setRandomRecipes(state, action: PayloadAction<Recipe[]>) {
+      state.randomRecipes = action.payload;
+    },
   },
 });
 
-export const { setRecipes } = recipeSlice.actions;
+export const { setRecipes, setRandomRecipes } = recipeSlice.actions;
 
 export default recipeSlice.reducer;

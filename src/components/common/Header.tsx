@@ -11,12 +11,15 @@ import SearchIcon from '@mui/icons-material/Search';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import { FlexEnd, FlexSpaceBetween } from '../styles/Global';
 import { useNavigate } from 'react-router-dom';
+import { useModalContext } from '../../context/ModalContext';
 
 const StyledBar = styled(AppBar)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
 }));
 
 const Header = () => {
+  const { signInModalOpen, setSignInModalOpen } = useModalContext();
+
   const navigate = useNavigate();
 
   return (
@@ -61,6 +64,9 @@ const Header = () => {
                 color='default'
                 aria-label='menu'
                 sx={{ mr: 1 }}
+                onClick={() => {
+                  setSignInModalOpen(true);
+                }}
               >
                 <AccountCircleOutlinedIcon />
               </IconButton>

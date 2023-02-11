@@ -36,8 +36,6 @@ interface Props {
 const RecipeDisplay = ({ recipe }: Props) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    console.log('click', `/recipes/${recipe.id}`);
-    // navigate(`/recipes/${recipe.id}`, { replace: true });
     navigate(`/recipes/${recipe.id}`);
   };
 

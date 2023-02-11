@@ -1,19 +1,36 @@
 # Task Management
 
-## Upcoming Tasks
+## UI styling tasks
 
-- [ ] Save to db main ingredients
+- [ ] Style homepage
+- [ ] Create widescreen view
+- [ ] Fix recipe component styles
+
+## Logic tasks
+
+- [ ] Auth and DB
+- [ ] SignUp with Google
 - [ ] Make app download ingreds on first load
+- [ ] Add query by name to complexSearch 
+
+## Components tasks
+
+- [ ] Create better homepage UI
+- [ ] Provide easy app navigation
+- [ ] Add query input line to SearchByTypeComponent
+- [ ] Save recipes and profile send to registration page
+- [ ] Add Notifications
+    -- [ ] when picking ingreds
+- [ ] Add Animation
+- [ ] Users page
 
 ## In Progress
 
-- [ ] Style homepage
-- [ ] Add around 10 top recipes to the homepage
-- [ ] Add added notification when clicking ingred
-- [ ] Possibly add animation
 
 ## Completed
 
+- [X] Save to db main ingredients
+- [X] Add around 10 top recipes to the homepage
 - [x] Fix delete button in ingred list in ingred search component
 - [x] Make type search in Search Options take whole parent contaier
 - [x] In SearchByIngreds remove IngredSelect and Construct new Modal like in Yummly

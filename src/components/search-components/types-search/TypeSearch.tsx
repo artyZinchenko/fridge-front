@@ -18,11 +18,9 @@ const TypeSearch = () => {
 
   const handleGetRecipes = async () => {
     try {
-      const { data }: { data: Recipe[] } = await getRecipesBySearch(
-        searchOptionsObj
-      );
+      const data = await getRecipesBySearch(searchOptionsObj);
       dispatch(setRecipes(data));
-      navigate('/recipes/recieved');
+      navigate('/recipes');
     } catch (err: unknown) {
       let errMessage = 'Something went wrong.';
       if (err instanceof Error) {

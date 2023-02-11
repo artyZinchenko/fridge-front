@@ -11,6 +11,15 @@ import { ModalOpenProvider } from './state/state';
 import SearchPage from './routes/SearchPage';
 import RecievedRecipes from './components/recipe-components/RecievedRecipes';
 import DetailedRecipe from './components/recipe-components/DetailedRecipe';
+import { useQueryClient } from '@tanstack/react-query/build/lib/QueryClientProvider';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import firebase from 'firebase/compat/app';
+import * as firebaseui from 'firebaseui';
+import 'firebaseui/dist/firebaseui.css';
+import { AuthContextProvider } from './context/AuthContext';
+import ModalContextProvider from './context/ModalContext';
+import SignInModal from './components/common/SignInModal';
 
 const router = createBrowserRouter([
   {
@@ -41,17 +50,24 @@ const AppContainer = styled(Container)(({ theme }) => ({
 
 const App = () => {
   const inputGlobalStyle = <GlobalStyles />;
+  const queryClient = new QueryClient();
 
   return (
     <div>
-      <ThemeProvider theme={theme}>
-        {inputGlobalStyle}
-        <ModalOpenProvider>
-          <AppContainer>
-            <RouterProvider router={router} />
-          </AppContainer>
-        </ModalOpenProvider>
-      </ThemeProvider>
+      <AuthContextProvider>
+        <ModalContextProvider>
+          <QueryClientProvider client={queryClient}>
+            <ThemeProvider theme={theme}>
+              {inputGlobalStyle}
+              <ReactQueryDevtools initialIsOpen={false} />
+              <AppContainer>
+                <SignInModal />
+                <RouterProvider router={router} />
+              </AppContainer>
+            </ThemeProvider>
+          </QueryClientProvider>
+        </ModalContextProvider>
+      </AuthContextProvider>
     </div>
   );
 };
