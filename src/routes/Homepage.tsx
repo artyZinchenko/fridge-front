@@ -1,6 +1,7 @@
 import Carousel from '../components/homepage-components/Carousel';
 import Layout from '../components/common/Layout';
 import BestRecipes from '../components/homepage-components/BestRecipes';
+import SignInModal from '../components/user-components/SignInModal';
 
 const Homepage = () => {
   return (

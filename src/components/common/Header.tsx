@@ -65,7 +65,7 @@ const Header = () => {
                 aria-label='menu'
                 sx={{ mr: 1 }}
                 onClick={() => {
-                  setSignInModalOpen(true);
+                  navigate('/account');
                 }}
               >
                 <AccountCircleOutlinedIcon />

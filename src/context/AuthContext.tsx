@@ -4,7 +4,6 @@ import {
   createContext,
   ReactNode,
   useState,
-  SetStateAction,
   useEffect,
 } from 'react';
 import {
@@ -12,10 +11,13 @@ import {
   getRedirectResult,
   GoogleAuthProvider,
   User,
+  onAuthStateChanged,
   signInWithRedirect,
   signOut,
 } from 'firebase/auth';
 import { app } from '../firebase-config';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { useModalContext } from './ModalContext';
 
 interface AuthContextValue {
   user: User | null;
@@ -29,34 +31,43 @@ export const AuthContext = createContext<AuthContextValue>({
   logOut: () => {},
 });
 
-interface Props {
-  children: ReactNode;
-}
-
-export const AuthContextProvider = ({ children }: Props) => {
+export const AuthContextProvider = () => {
   const [user, setUser] = useState<User | null>(null);
+  const navigate = useNavigate();
+  const { signInModalOpen, setSignInModalOpen } = useModalContext();
+  console.log('auth provider');
 
-  console.log(user);
-
-  const googleSignIn = () => {
+  const googleSignIn = async () => {
     const provider = new GoogleAuthProvider();
     const auth = getAuth(app);
     signInWithRedirect(auth, provider);
-    getRedirectResult(auth)
-      .then((result) => {
-        console.log('redirect result');
-        result?.user && setUser(result.user);
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        console.log(errorMessage);
-      });
   };
 
-  const logOut = () => {
+  const logOut = async () => {
     const auth = getAuth(app);
-    signOut(auth);
+
+    try {
+      await signOut(auth);
+      setUser(null);
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  useEffect(() => {
+    const auth = getAuth(app);
+
+    const unsubscribe = onAuthStateChanged(auth, (user: User | null) => {
+      if (user) {
+        setUser(user);
+        console.log('OnAuthStateChange User: ', user);
+      }
+    });
+    return () => {
+      unsubscribe();
+    };
+  });
 
   useEffect(() => {
     const auth = getAuth(app);
@@ -65,6 +76,8 @@ export const AuthContextProvider = ({ children }: Props) => {
       .then((result) => {
         console.log('redirect result');
         result?.user && setUser(result.user);
+        setSignInModalOpen(false);
+        navigate('/');
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -74,7 +87,7 @@ export const AuthContextProvider = ({ children }: Props) => {
 
   return (
     <AuthContext.Provider value={{ user, googleSignIn, logOut }}>
-      {children}
+      <Outlet />
     </AuthContext.Provider>
   );
 };

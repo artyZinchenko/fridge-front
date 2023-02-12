@@ -8,6 +8,7 @@ import { Container } from '@mui/system';
 import { FlexVertical } from '../styles/Global';
 import { IconButton } from '@mui/material';
 import { UserAuth } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const style = {
   width: '100vw',
@@ -18,12 +19,14 @@ const style = {
 const SignInModal = () => {
   const { signInModalOpen, setSignInModalOpen } = useModalContext();
   const { googleSignIn, user } = UserAuth();
+  const navigate = useNavigate();
 
   console.log('User: ', user);
 
   const handleClick = async () => {
     try {
       await googleSignIn();
+      navigate('/account');
     } catch (error) {
       console.log(error);
     }

@@ -19,25 +19,41 @@ import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
 import { AuthContextProvider } from './context/AuthContext';
 import ModalContextProvider from './context/ModalContext';
-import SignInModal from './components/common/SignInModal';
+import SignInModal from './components/user-components/SignInModal';
+import AccountPage from './routes/AccountPage';
+import ProtectedRoute from './routes/ProtectedRoute';
+import LoginPage from './routes/LoginPage';
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <Homepage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: 'recipes',
-    element: <RecipesPage />,
-  },
-  {
-    path: 'recipes/:id',
-    element: <DetailedRecipe />,
-  },
-  {
-    path: 'search',
-    element: <SearchPage />,
+    element: <AuthContextProvider />,
+    children: [
+      {
+        path: '/',
+        element: <Homepage />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: 'recipes',
+        element: <RecipesPage />,
+      },
+      {
+        path: 'recipes/:id',
+        element: <DetailedRecipe />,
+      },
+      {
+        path: 'search',
+        element: <SearchPage />,
+      },
+      {
+        path: 'login',
+        element: <LoginPage />,
+      },
+      {
+        path: 'account',
+        element: <ProtectedRoute />,
+      },
+    ],
   },
 ]);
 
@@ -54,20 +70,17 @@ const App = () => {
 
   return (
     <div>
-      <AuthContextProvider>
-        <ModalContextProvider>
-          <QueryClientProvider client={queryClient}>
-            <ThemeProvider theme={theme}>
-              {inputGlobalStyle}
-              <ReactQueryDevtools initialIsOpen={false} />
-              <AppContainer>
-                <SignInModal />
-                <RouterProvider router={router} />
-              </AppContainer>
-            </ThemeProvider>
-          </QueryClientProvider>
-        </ModalContextProvider>
-      </AuthContextProvider>
+      <ModalContextProvider>
+        <QueryClientProvider client={queryClient}>
+          <ThemeProvider theme={theme}>
+            {inputGlobalStyle}
+            <ReactQueryDevtools initialIsOpen={false} />
+            <AppContainer>
+              <RouterProvider router={router} />
+            </AppContainer>
+          </ThemeProvider>
+        </QueryClientProvider>
+      </ModalContextProvider>
     </div>
   );
 };
