@@ -1,5 +1,4 @@
 import ButtonTextField from '../common/ButtonTextField';
-import { FlexSpaceBetween } from '../styles/Global';
 import Greet from '../common/Greet';
 import styles from './Homepage.module.scss';
 

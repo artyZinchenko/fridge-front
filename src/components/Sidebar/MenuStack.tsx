@@ -5,14 +5,13 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { FlexVertical } from '../styles/Global';
-import { Divider, Stack, useMediaQuery } from '@mui/material';
+import { Divider, Stack } from '@mui/material';
 import { styled } from '@mui/material';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useEffect, useMemo, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useMemo } from 'react';
 import './MenuStack.css';
 import MyLink from '../common/MyLink';
 import { useModalContext } from '../../context/ModalContext';
-import Empty from './Empty';
 
 const StyledAccordion = styled(Accordion)({
   border: 0,
@@ -22,16 +21,7 @@ const StyledAccordion = styled(Accordion)({
   },
 });
 
-const useNavigateTo = (page: string) => {
-  const navigate = useNavigate();
-};
-
 const MenuStack = () => {
-  const [currentPage, setCurrentPage] = useState('Home');
-
-  const navigate = useNavigate();
-  const matches = useMediaQuery('(min-width:40em)');
-
   const { pathname } = useLocation();
   const { searchByIngreds, setSearchByIngreds } = useModalContext();
 

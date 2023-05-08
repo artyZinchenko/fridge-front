@@ -1,11 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import {
-  useContext,
-  createContext,
-  ReactNode,
-  useState,
-  useEffect,
-} from 'react';
+import { useContext, createContext, useState, useEffect } from 'react';
 import {
   getAuth,
   getRedirectResult,
@@ -16,7 +10,7 @@ import {
   signOut,
 } from 'firebase/auth';
 import { app } from '../firebase-config';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { useModalContext } from './ModalContext';
 import { useQueryClient } from '@tanstack/react-query';
 
@@ -45,7 +39,7 @@ export const AuthContextProvider = () => {
 
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const { signInModalOpen, setSignInModalOpen } = useModalContext();
+  const { setSignInModalOpen } = useModalContext();
 
   const googleSignIn = async () => {
     const provider = new GoogleAuthProvider();

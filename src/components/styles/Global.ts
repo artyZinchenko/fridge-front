@@ -1,9 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import { styled as muiStyled } from '@mui/system';
 import { Box } from '@mui/system';
-import { Container } from '@mui/system';
-import { Button, AccordionSummary, Paper } from '@mui/material';
-import styled from 'styled-components';
+import { Paper } from '@mui/material';
 
 const GlobalStyles = createGlobalStyle`
 body {

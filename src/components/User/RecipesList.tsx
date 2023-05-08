@@ -1,8 +1,6 @@
 import { Box, Skeleton, Typography } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
-import { UserAuth } from '../../context/AuthContext';
 import { getRecipesById } from '../../services/recipeServices';
-import { getUserData } from '../../services/userServices';
 import SkeletonRecipeArray from '../common/SkeletonRecipeArray';
 import RecipeDisplay from '../Recipes/IndividualRecipes/RecipeDisplay';
 import { FlexVertical } from '../styles/Global';

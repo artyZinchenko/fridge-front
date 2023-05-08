@@ -1,10 +1,6 @@
-import { ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
-import SignInModal from '../components/User/SignInModal';
 import { UserAuth } from '../context/AuthContext';
-import ModalContextProvider, { useModalContext } from '../context/ModalContext';
 import AccountPage from './AccountPage';
-import LoginPage from './LoginPage';
 
 const ProtectedRoute = () => {
   const { user } = UserAuth();

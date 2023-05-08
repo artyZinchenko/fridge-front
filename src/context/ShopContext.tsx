@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { useQuery } from '@tanstack/react-query';
 import {
   createContext,
   Dispatch,

@@ -22,7 +22,7 @@ const AddAll = ({ extendedIngredients, token, data }: Props) => {
       setSignInModalOpen(true);
       return;
     }
-    const response = await userSaveIngredients(token, extendedIngredients);
+    await userSaveIngredients(token, extendedIngredients);
     setIngredients(extendedIngredients);
     setSaved(true);
   };

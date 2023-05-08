@@ -1,7 +1,4 @@
-import axios from 'axios';
-import { useState, useEffect } from 'react';
 import { UserAuth } from '../../context/AuthContext';
-import { useUserDataQuery } from '../hooks/queries/useUserDataQuery';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useNavigate } from 'react-router-dom';
 

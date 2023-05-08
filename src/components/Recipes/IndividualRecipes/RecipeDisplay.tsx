@@ -1,13 +1,6 @@
-import { useState } from 'react';
-import { FlexSpaceBetween, FlexVertical, FlexStart } from '../../styles/Global';
 import { Recipe } from '../../../types';
 import Typography from '@mui/material/Typography';
-import Accordion from '@mui/material/Accordion';
-import { AccordionSummary, Box } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import { Divider } from '@mui/material';
-import { styled } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import styles from '../Recipes.module.scss';
 import { shortenString } from '../../../utils/common';

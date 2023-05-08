@@ -1,6 +1,4 @@
-import { useState } from 'react';
-import { FlexStart, FlexVertical } from '../../styles/Global';
-import { Box } from '@mui/material';
+import { FlexVertical } from '../../styles/Global';
 
 import {
   cuisineTypes,

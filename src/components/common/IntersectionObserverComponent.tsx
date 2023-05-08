@@ -2,11 +2,9 @@ import {
   FetchNextPageOptions,
   InfiniteQueryObserverResult,
 } from '@tanstack/react-query';
-import { useRef, useEffect, useCallback } from 'react';
-import { ReactNode } from 'react';
+import { useRef, useCallback } from 'react';
+
 import { Recipe } from '../../types';
-import CircularIndeterminate from './CircularIndeterminate';
-import { useInView } from 'react-intersection-observer';
 
 interface Props {
   callback: (

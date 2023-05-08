@@ -2,10 +2,6 @@ import { Box, Button, Typography } from '@mui/material';
 import { useState } from 'react';
 import { FlexVertical } from '../../styles/Global';
 import SearchBar from './SelectGroup';
-import { getRecipesBySearch } from '../../../services/recipeServices';
-import { Recipe } from '../../../types';
-import { setRecipes } from '../../../reducers/recipeSlice';
-import { useAppDispatch } from '../../../hooks';
 import { useNavigate } from 'react-router-dom';
 
 const TypeSearch = () => {

@@ -1,10 +1,6 @@
-import { Box, Button, Typography } from '@mui/material';
-import { ExtendedIngred, IngredApi, UserData } from '../../../types';
-import { FlexSpaceBetween, FlexStart } from '../../styles/Global';
+import { Box } from '@mui/material';
+import { ExtendedIngred, UserData } from '../../../types';
 
-import { useAppDispatch, useAppSelector } from '../../../hooks';
-import { addToCart, addToStore } from '../../../reducers/ingredSlice';
-import { toNewIngred } from '../../../utils/common';
 import IngredientComponent from './IngredientComponent';
 import { useEffect, useState } from 'react';
 

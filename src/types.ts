@@ -1,15 +1,3 @@
-export interface IngredApi {
-  name: string;
-  id: number;
-  inPantry: boolean;
-  inCart: boolean;
-  selected: boolean;
-  aisle?: string;
-  amount?: number;
-  measures?: Measures;
-  image?: string;
-}
-
 export interface IngredientId {
   name: string;
   id: number;
@@ -71,17 +59,3 @@ export interface AutocompleteResult {
   id: number;
   title: string;
 }
-
-// export interface IngredFromApi {
-//   aisle: string;
-//   amount: number;
-//   name: string;
-//   image: string;
-// }
-
-// export interface IngredUI {
-//   type: string;
-//   name: string;
-//   id: number;
-//   selected: boolean;
-// }

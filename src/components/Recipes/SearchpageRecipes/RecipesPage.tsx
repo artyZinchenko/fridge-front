@@ -1,12 +1,9 @@
-import { Divider, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
-import { memo } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { fetchFunctions } from '../../../data/fetchFunctions';
-import ButtonTextField from '../../common/ButtonTextField';
-import ModalSearch from '../../common/ModalSearch';
 import SkeletonRecipeArray from '../../common/SkeletonRecipeArray';
-import RecipeQuery from '../../RecipeQuery/RecipeQuery';
+
 import { CenterChildElement } from '../../styles/Global';
 import BestRecipes from '../HomepageRecipes/BestRecipes';
 import RecipeDisplay from '../IndividualRecipes/RecipeDisplay';

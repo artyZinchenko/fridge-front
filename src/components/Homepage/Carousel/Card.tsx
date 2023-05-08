@@ -1,6 +1,4 @@
-import { CardContent, Typography, CardActions, Button } from '@mui/material';
-import CardMedia from '@mui/material/CardMedia/CardMedia';
-import { styled } from '@mui/material';
+import { Typography, Button } from '@mui/material';
 import { FlexVertical } from '../../styles/Global';
 import carouselData from '../../../data/carouselData';
 import { motion } from 'framer-motion';
@@ -23,13 +21,6 @@ interface Props {
 const Card = ({ direction, page, paginate }: Props) => {
   const navigate = useNavigate();
   const { user } = UserAuth();
-
-  // const paginate = (newDirection: number) => {
-  //   const nextStep = activeStep + newDirection;
-  //   if (nextStep === carouselData.length) setActiveStep(0);
-  //   else if (nextStep < 0) setActiveStep(carouselData.length - 1);
-  //   else setActiveStep(nextStep);
-  // };
 
   const { img, title, fn } = carouselData[page];
 

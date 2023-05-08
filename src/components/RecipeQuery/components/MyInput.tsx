@@ -1,19 +1,9 @@
-import { Backdrop, InputAdornment, styled, TextField } from '@mui/material';
-import {
-  Dispatch,
-  memo,
-  SetStateAction,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { InputAdornment, styled, TextField } from '@mui/material';
+import { Dispatch, SetStateAction } from 'react';
 import { autocomplete } from '../../../services/recipeServices';
 import { AutocompleteResult } from '../../../types';
 import SearchIcon from '@mui/icons-material/Search';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import debounce from 'lodash.debounce';
 import '../styles.css';
 import { debounceWithChangeEvent } from '../../../utils/debounce';
 

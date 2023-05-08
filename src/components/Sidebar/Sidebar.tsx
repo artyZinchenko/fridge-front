@@ -1,31 +1,22 @@
-import { useEffect, useMemo, useState } from 'react';
-import ListSubheader from '@mui/material/ListSubheader';
+import { useEffect, useMemo } from 'react';
 import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
 import FilterAltRoundedIcon from '@mui/icons-material/FilterAltRounded';
-import StarBorder from '@mui/icons-material/StarBorder';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
-import { Avatar, Button, Divider, ListItem, Typography } from '@mui/material';
 import KitchenIcon from '@mui/icons-material/Kitchen';
 import MenuBookRoundedIcon from '@mui/icons-material/MenuBookRounded';
-import { CenterChildElement, FlexStart, FlexVertical } from '../styles/Global';
+import { CenterChildElement } from '../styles/Global';
 import SidebarItem from './SidebarItem';
-import { UserAuth } from '../../context/AuthContext';
 import { ExpandedLogo } from '../common/Logos';
 import { useLocation } from 'react-router-dom';
 import { useModalContext } from '../../context/ModalContext';
 import UserGroup from '../common/UserGroup';
 import Footer from './Footer';
 import './Sidebar.css';
-import { includes } from 'lodash';
 
 const SidebarContent = () => {
-  const { user, logOut, googleSignIn } = UserAuth();
   const { pathname } = useLocation();
-  const { signInModalOpen, setSignInModalOpen } = useModalContext();
+  const { setSignInModalOpen } = useModalContext();
 
   useEffect(() => {
     setSignInModalOpen(false);

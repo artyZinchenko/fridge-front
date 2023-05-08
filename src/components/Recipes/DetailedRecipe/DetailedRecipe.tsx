@@ -1,12 +1,9 @@
-import { useParams } from 'react-router-dom';
-import { useAppSelector } from '../../../hooks';
 import { Recipe } from '../../../types';
 import { Box, Button, Divider, styled, Typography } from '@mui/material';
 import { FlexSpaceBetween, FlexVertical } from '../../styles/Global';
 import { useEffect, useState } from 'react';
 import MeasurmentOptions from './MeasurmentOptions';
 import IngredientList from './IngredientList';
-import { useApiRecipes } from '../../hooks/ReducerHooks';
 import { useLocation } from 'react-router-dom';
 import styles from './DetailedRecipe.module.scss';
 import AddAll from './components/AddAll';
@@ -14,8 +11,6 @@ import RecipeTags from './components/RecipeTags';
 import { getUserData, userSaveRecipe } from '../../../services/userServices';
 import { UserAuth } from '../../../context/AuthContext';
 import { useQuery } from '@tanstack/react-query';
-import { userSaveIngredients } from '../../../services/ingredientService';
-import { useShopContext } from '../../../context/ShopContext';
 import { useModalContext } from '../../../context/ModalContext';
 import SignInModal from '../../User/SignInModal';
 import SaveButton from './components/SaveButton';
@@ -31,7 +26,7 @@ const DetailedRecipe = () => {
   const [enabled, setEnabled] = useState(false);
 
   const { token, resolvingUser } = UserAuth();
-  const { signInModalOpen, setSignInModalOpen } = useModalContext();
+  const { setSignInModalOpen } = useModalContext();
   const location = useLocation();
 
   useEffect(() => {
@@ -55,7 +50,7 @@ const DetailedRecipe = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const { data, isSuccess, isLoading, isError, error } = useQuery({
+  const { data } = useQuery({
     queryKey: ['user-data'],
     queryFn: async () => {
       const data = await getUserData(token);

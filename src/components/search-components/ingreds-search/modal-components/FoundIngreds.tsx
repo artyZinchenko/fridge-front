@@ -1,7 +1,4 @@
-import { text } from 'stream/consumers';
-import { useAppDispatch, useAppSelector } from '../../../../hooks';
-import { addToPantry } from '../../../../reducers/ingredSlice';
-import { IngredApi, IngredientId } from '../../../../types';
+import { IngredientId } from '../../../../types';
 import { FlexStart, FlexVertical } from '../../../styles/Global';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { Typography } from '@mui/material';
@@ -10,8 +7,6 @@ import {
   ingredAutocomplete,
   savePantryIngredients,
 } from '../../../../services/ingredientService';
-import { debounceWithChangeEvent } from '../../../../utils/debounce';
-import { useDebounce } from '../../../hooks/useDebounce';
 import { usePantryIngredientsContext } from '../../../../context/PantryIngredientsContext';
 import { useState } from 'react';
 import { UserAuth } from '../../../../context/AuthContext';
@@ -24,11 +19,10 @@ interface Props {
 const FoundIngreds = ({ text, setAnnouncement }: Props) => {
   const [ingredientList, setIngredientList] = useState<IngredientId[]>([]);
 
-  const { pantryIngredients, setPantryIngredients, addToPantry } =
-    usePantryIngredientsContext();
+  const { pantryIngredients, addToPantry } = usePantryIngredientsContext();
   const { user, token } = UserAuth();
 
-  const { data, isError, isLoading } = useQuery<IngredientId[]>({
+  const { isError, isLoading } = useQuery<IngredientId[]>({
     queryKey: ['search-ingredients', text],
     queryFn: async () => {
       const data = await ingredAutocomplete(text);

@@ -1,11 +1,8 @@
-import Header from './MobileHeader';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import SidebarContent from '../Sidebar/Sidebar';
 import './Layout.css';
 import { Outlet } from 'react-router-dom';
-import Container from '@mui/material/Container';
-import { Backdrop, styled, SwipeableDrawer } from '@mui/material';
-import WidescreenHeader from '../Homepage/WidescreenTop';
+import { styled, SwipeableDrawer } from '@mui/material';
 import MobileHeader from './MobileHeader';
 import { useModalContext } from '../../context/ModalContext';
 
@@ -15,13 +12,6 @@ const Drawer = styled(SwipeableDrawer)({
     width: '100vw',
   },
 });
-
-const AppContainer = styled(Container)(({ theme }) => ({
-  width: '100%',
-  backgroundColor: theme.palette.background.default,
-  margin: '0',
-  padding: '0',
-}));
 
 const Layout = () => {
   const { mobileSidebarOpen, setMobileSidebarOpen } = useModalContext();

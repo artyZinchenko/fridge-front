@@ -1,10 +1,5 @@
 import { Typography } from '@mui/material';
-import {
-  CenterChildElement,
-  FlexEnd,
-  FlexSpaceBetween,
-  FlexStart,
-} from '../styles/Global';
+import { FlexStart } from '../styles/Global';
 import './Footer.scss';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';

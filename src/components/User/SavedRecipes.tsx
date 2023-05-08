@@ -1,12 +1,8 @@
 import { UserAuth } from '../../context/AuthContext';
-import { useQuery } from '@tanstack/react-query';
-import { getUserData, userCall } from '../../services/userServices';
-import { Button, Skeleton, Typography, useMediaQuery } from '@mui/material';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { Button, Skeleton, Typography } from '@mui/material';
 import { FlexVertical } from '../styles/Global';
 import styles from './User.module.scss';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect } from 'react';
 import SignInModal from './SignInModal';
 import RecipesList from './RecipesList';
 import { useModalContext } from '../../context/ModalContext';
@@ -17,7 +13,7 @@ import { useSetTitle } from '../hooks/useSetTitle';
 
 const SavedRecipes = () => {
   const { token, user, logOut } = UserAuth();
-  const { signInModalOpen, setSignInModalOpen } = useModalContext();
+  const { setSignInModalOpen } = useModalContext();
   const { resolvingUser } = UserAuth();
   useSetTitle();
 

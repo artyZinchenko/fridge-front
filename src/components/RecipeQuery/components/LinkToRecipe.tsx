@@ -1,8 +1,4 @@
-import { async } from '@firebase/util';
 import { Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import { useModalContext } from '../../../context/ModalContext';
-import { getRecipesByTitle } from '../../../services/recipeServices';
 import { AutocompleteResult } from '../../../types';
 
 interface Props {

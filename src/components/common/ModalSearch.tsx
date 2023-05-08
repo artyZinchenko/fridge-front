@@ -1,5 +1,4 @@
 import { Modal, styled, Box } from '@mui/material';
-import { ReactNode } from 'react';
 import { useModalContext } from '../../context/ModalContext';
 import RecipeQuery from '../RecipeQuery/RecipeQuery';
 

@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { ExtendedIngred, IngredApi, IngredientId, UserData } from '../types';
-import errorHandler from './apiErrorHandler';
+import { ExtendedIngred, IngredientId } from '../types';
 
 const apiBaseUrl = 'https://fridge-app-backend.onrender.com/api';
 

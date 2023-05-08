@@ -1,16 +1,12 @@
-import { useAppDispatch, useAppSelector } from '../../../hooks';
 import Ingred from '../../common/Ingred';
 import Box from '@mui/material/Box';
-import { Button, styled } from '@mui/material';
-import { toggleSelected } from '../../../reducers/ingredSlice';
-import { IngredApi, IngredientId } from '../../../types';
-import { deleteIngreds } from '../../../reducers/ingredSlice';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { styled } from '@mui/material';
+import { IngredientId } from '../../../types';
 import { usePantryIngredientsContext } from '../../../context/PantryIngredientsContext';
 import { UserAuth } from '../../../context/AuthContext';
 import { deletePantryIngredients } from '../../../services/ingredientService';
 
-const IngredBox = styled(Box)(({ theme }) => ({
+const IngredBox = styled(Box)({
   background: 'transparent',
   padding: '10px',
   height: '100%',
@@ -20,11 +16,7 @@ const IngredBox = styled(Box)(({ theme }) => ({
   justifyContent: 'flex-start',
   alignContent: 'flex-start',
   gap: '10px',
-}));
-
-type Props = {
-  ingredients: IngredientId[];
-};
+});
 
 const IngredList = () => {
   const { user, token } = UserAuth();

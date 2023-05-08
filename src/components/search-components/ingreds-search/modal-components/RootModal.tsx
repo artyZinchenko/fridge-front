@@ -1,13 +1,11 @@
 import { useState } from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { FlexVertical } from '../../../styles/Global';
 import SelectTextField from './SelectTextField';
 import { styled } from '@mui/material/styles';
 import PopularIngredients from './PopularIngredients';
-import IngredsFound from './FoundIngreds';
 import FoundIngreds from './FoundIngreds';
 import { useDebounce } from '../../../hooks/useDebounce';
 import { IngredientId } from '../../../../types';

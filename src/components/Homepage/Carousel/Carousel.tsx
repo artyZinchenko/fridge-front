@@ -1,13 +1,7 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useState } from 'react';
 import Card from './Card';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import MobileStepper from '@mui/material/MobileStepper';
-import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material';
-import { Button } from '@mui/material';
-import { styled } from '@mui/material';
 import CarouselDots from './CarouselDots';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import carouselData from '../../../data/carouselData';
 import styles from './Carousel.module.scss';
 

@@ -1,10 +1,8 @@
 import { Typography, Box } from '@mui/material';
 import { FlexSpaceBetween, FlexStart } from '../styles/Global';
 import { styled } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 import KitchenIcon from '@mui/icons-material/Kitchen';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
-import { useModalContext } from '../../context/ModalContext';
 import { Link, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 

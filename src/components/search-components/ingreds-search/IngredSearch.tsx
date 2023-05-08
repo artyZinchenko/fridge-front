@@ -1,20 +1,9 @@
 import { Box, Button, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { useState } from 'react';
 import IngredList from './IngredList';
-import {
-  CenterChildElement,
-  FlexEnd,
-  FlexSpaceBetween,
-  FlexVertical,
-} from '../../styles/Global';
-import { resetSelected, selectAll } from '../../../reducers/ingredSlice';
-import { getRecipesByIngredients } from '../../../services/recipeServices';
-import { IngredApi, Recipe } from '../../../types';
-import { setRecipes } from '../../../reducers/recipeSlice';
+import { FlexEnd, FlexSpaceBetween, FlexVertical } from '../../styles/Global';
 import { styled } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import IngredientSelect from './modal-components/SelectTextField';
 import IngredModal from './modal-components/RootModal';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { usePantryIngredientsContext } from '../../../context/PantryIngredientsContext';

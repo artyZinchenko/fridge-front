@@ -1,8 +1,7 @@
 import { Typography } from '@mui/material';
-import { IngredApi, IngredientId } from '../../types';
+import { IngredientId } from '../../types';
 import { styled } from '@mui/material';
 import Box from '@mui/material/Box';
-import { useEffect, useState } from 'react';
 import { FlexSpaceBetween } from '../styles/Global';
 import ClearIcon from '@mui/icons-material/Clear';
 
@@ -32,13 +31,6 @@ const Ingred = ({ ingred, expanded, handleClick }: IngredProps) => {
   return (
     <IngredsButton onClick={() => handleClick(ingred)}>
       <FlexSpaceBetween>
-        {/* {ingred.image && (
-          <div className='ingredImage'>
-            <img
-              src={`https://spoonacular.com/cdn/ingredients_100x100/${ingred.image}`}
-            />
-          </div>
-        )} */}
         <Typography variant='body2'>{ingred.name}</Typography>
         {expanded && <ClearIcon fontSize='small' color='disabled' />}
       </FlexSpaceBetween>

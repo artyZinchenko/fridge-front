@@ -7,9 +7,6 @@ import {
   ListItemText,
   Typography,
 } from '@mui/material';
-import { set } from 'immer/dist/internal';
-import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import MyLink from '../common/MyLink';
 import { FlexStart } from '../styles/Global';
 import { styled } from '@mui/material';

@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { AutocompleteResult, Item, Recipe } from '../types';
-import errorHandler from './apiErrorHandler';
 
 const apiBaseUrl = 'https://fridge-app-backend.onrender.com/api';
 

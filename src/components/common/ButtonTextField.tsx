@@ -1,18 +1,6 @@
-import React from 'react';
-import { useState, useRef, forwardRef } from 'react';
-import {
-  TextField,
-  Box,
-  Paper,
-  Button,
-  ClickAwayListener,
-  InputAdornment,
-} from '@mui/material';
-import { useTheme } from '@mui/material';
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import { TextField, InputAdornment } from '@mui/material';
 import { useModalContext } from '../../context/ModalContext';
 import SearchIcon from '@mui/icons-material/Search';
-import RecipeSearchModal from './ModalSearch';
 import { styled } from '@mui/material';
 
 const StyledButtonTextField = styled(TextField)(({ theme }) => ({

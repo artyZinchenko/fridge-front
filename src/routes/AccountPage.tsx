@@ -1,10 +1,9 @@
 import { Button } from '@mui/material';
-import { User } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
 
 const AccountPage = () => {
-  const { user, logOut } = UserAuth();
+  const { logOut } = UserAuth();
   const navigate = useNavigate();
 
   const handleLogout = async () => {

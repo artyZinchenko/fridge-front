@@ -1,6 +1,5 @@
 import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/material';
-import { FlexSpaceBetween } from '../../styles/Global';
 import styles from './DetailedRecipe.module.scss';
 
 interface StyledProps {

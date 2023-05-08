@@ -1,12 +1,9 @@
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import GoogleButton from 'react-google-button';
 import { useModalContext } from '../../context/ModalContext';
-import { Container } from '@mui/system';
 import { FlexVertical } from '../styles/Global';
-import { IconButton } from '@mui/material';
 import { UserAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';

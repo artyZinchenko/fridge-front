@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { useQuery } from '@tanstack/react-query';
 import {
   createContext,
   Dispatch,
@@ -8,10 +7,8 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { Outlet } from 'react-router-dom';
 import { useUserDataQuery } from '../components/hooks/queries/useUserDataQuery';
-import { savePantryIngredients } from '../services/ingredientService';
-import { ExtendedIngred, IngredientId } from '../types';
+import { IngredientId } from '../types';
 import { UserAuth } from './AuthContext';
 
 interface PantryIngredientsContext {
