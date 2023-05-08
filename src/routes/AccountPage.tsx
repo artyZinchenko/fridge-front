@@ -10,7 +10,6 @@ const AccountPage = () => {
   const handleLogout = async () => {
     await logOut();
     navigate('/');
-    console.log('User: ', user);
   };
 
   return (

@@ -1,0 +1,24 @@
+@import url('');
+
+.content-component {
+  width: 90%;
+  max-width: 40em;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  padding-left: 6rem;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.v-flex-between {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}

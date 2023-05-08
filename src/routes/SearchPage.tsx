@@ -8,10 +8,14 @@ import { useEffect, useState } from 'react';
 import SearchOptions from '../components/search-components/OptionsSelect';
 import SearchByIngredsComponent from '../components/search-components/ingreds-search/IngredSearch';
 import SearchByTypesComponent from '../components/search-components/types-search/TypeSearch';
-import Layout from '../components/common/Layout';
+import Layout from '../components/Layout/Layout';
 import ContainerIngredSearch from '../components/search-components/ingreds-search/IngredSearch';
 import IngredSearch from '../components/search-components/ingreds-search/IngredSearch';
 import OptionsSelect from '../components/search-components/OptionsSelect';
+import { useModalContext } from '../context/ModalContext';
+import { PantryIngredientsContextProvider } from '../context/PantryIngredientsContext';
+import { Outlet } from 'react-router-dom';
+import { useSetTitle } from '../components/hooks/useSetTitle';
 
 const StyledPaper = styled(Paper)({
   margin: '0.6em',
@@ -25,20 +29,23 @@ const StyledBox = styled(Box)({
 });
 
 const SearchPage = () => {
-  const [searchByIngreds, setSearchByIngreds] = useState<boolean>(true);
+  const { searchByIngreds } = useModalContext();
+  useSetTitle();
 
   return (
-    <Layout>
-      <StyledPaper>
-        <StyledBox>
-          <OptionsSelect
-            searchByIngreds={searchByIngreds}
-            setSearchByIngreds={setSearchByIngreds}
-          />
-          {searchByIngreds ? <IngredSearch /> : <SearchByTypesComponent />}
-        </StyledBox>
-      </StyledPaper>
-    </Layout>
+    <StyledPaper>
+      <StyledBox>
+        <OptionsSelect />
+        <PantryIngredientsContextProvider>
+          <Outlet />
+        </PantryIngredientsContextProvider>
+        {/* {searchByIngreds ? (
+            <IngredSearch />
+        ) : (
+          <SearchByTypesComponent />
+        )} */}
+      </StyledBox>
+    </StyledPaper>
   );
 };
 

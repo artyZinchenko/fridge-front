@@ -7,6 +7,7 @@ import styled from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
 body {
+  background-color: #fafafa;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -17,10 +18,167 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-img{
-  width: 100%;
-  border-radius: 10px;
+.white-bg{
+  background-color: #fff;
 }
+
+.user-img {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+a{
+  text-decoration: none;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+.full-width{
+  width: 100%;
+}
+
+@media (max-width: 30em) {
+  .recipes-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2em;
+    /* padding-inline: 1em; */
+  }
+}
+
+@media (min-width: 30em) {
+  .recipes-list {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: flex-start;
+    align-content: center;
+  }
+}
+
+
+@media (max-width:40em) {
+  .flex-media {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+}
+
+.flex-gap {
+  gap: 0.5em;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.test {
+  background-color: red;
+}
+
+.center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+@media (min-width: 40em){
+.modal{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+ .flex-media {
+    width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-gap {
+  gap: 1em;
+}
+
+.modal-content{
+outline: none;
+  padding-left: 11em;
+  width: calc(100% - 11em);
+}
+
+.py{
+  padding-block: 2em;
+}
+
+.px{
+  padding-inline: 2em;
+}
+
+.gap> *:not(:last-child) {
+  padding-bottom: 1em;
+}
+
+}
+
+@media (max-width: 40em){
+  .flex-media {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+  .modal{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+  .modal-content{
+    outline: none;
+}
+
+.overflow{
+   overflow: auto;
+}
+
+  .py{
+  padding-block: 1em;
+}
+
+  .px{
+  padding-inline: 1em;
+}
+
+.gap> *:not(:last-child) {
+  padding-bottom: 0.5em;
+}
+}
+
+//TODO: these styles below should be moved towards ther components
 
 .typeImage{
   width: 1.3em;
@@ -30,12 +188,7 @@ img{
 .expandedImage{
   width: 4em;
   height: 4em;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+ } 
 
 `;
 
@@ -57,6 +210,7 @@ export const FlexStart = muiStyled(Box)({
 });
 
 export const FlexEnd = muiStyled(Box)({
+  width: '80%',
   display: 'flex',
   justifyContent: 'flex-end',
   alignItems: 'center',
@@ -65,22 +219,12 @@ export const FlexEnd = muiStyled(Box)({
 
 export const FlexVertical = muiStyled(Box)({
   width: '100%',
-  paddingBlock: '1em',
+  gap: '0.5em',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start',
   alignItems: 'center',
 });
-
-// export const ImageContainer = muiStyled(Box)({
-//   width: '10em',
-//   borderRadius: '10px',
-//   img: {
-//     width: '100%',
-//     objectFit: 'contain',
-//     objectPosition: 'center',
-//   },
-// });
 
 export const BackgroundPaper = muiStyled(Paper)({
   width: '100%',
@@ -95,14 +239,6 @@ export const CenterChildElement = muiStyled(Box)({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-});
-
-export const FelxEnd = muiStyled(Box)({
-  width: '100%',
-  // display: 'flex',
-  // flexDirection: 'row',
-  // alignItems: 'center',
-  // justifyContent: 'flex-end',
 });
 
 export default GlobalStyles;

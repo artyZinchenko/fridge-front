@@ -1,0 +1,27 @@
+.grid {
+  display: grid;
+  grid-template-columns: 11em auto;
+}
+
+.leftColumn {
+  z-index: 5000;
+  grid-column: 1;
+  width: 100%;
+  overflow: hidden;
+}
+
+.sidebar {
+  z-index: 5001;
+  width: 11em;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 0px 0 10px 0px rgba(0, 0, 0, 0.3);
+  height: 100%;
+}
+
+.container {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 50em;
+}

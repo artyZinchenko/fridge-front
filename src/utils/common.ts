@@ -2,8 +2,9 @@ import { useAppDispatch, useAppSelector } from '../hooks';
 import { addToStore } from '../reducers/ingredSlice';
 import { ExtendedIngred, IngredApi } from '../types';
 
-export const shortenUrl = (fullurl: string): string => {
-  return fullurl.slice(0, 35).concat('', '...');
+export const shortenString = (text: string, limit: number): string => {
+  if (text.length <= limit) return text;
+  return text.slice(0, limit).concat('...');
 };
 
 export const toNewIngred = (ingred: ExtendedIngred): IngredApi | undefined => {
@@ -11,7 +12,6 @@ export const toNewIngred = (ingred: ExtendedIngred): IngredApi | undefined => {
   const formattedIngred: IngredApi = {
     name: ingred.name,
     id: ingred.id,
-    amount: ingred.amount,
     measures: ingred.measures,
     aisle: ingred.aisle,
     inPantry: false,

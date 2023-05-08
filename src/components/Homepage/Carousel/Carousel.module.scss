@@ -1,0 +1,68 @@
+.fixed-height {
+  height: 5em;
+}
+
+.dots {
+  padding-top: 1em;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 0.7em;
+}
+
+.rail {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+.railContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 2em;
+  width: 100%;
+  max-width: 50em;
+  margin-inline: auto;
+}
+
+.dot :hover {
+  cursor: pointer;
+}
+
+.imageContainer {
+  max-width: 20em;
+  width: 100%;
+  aspect-ratio: 1/1;
+}
+
+.text {
+  max-width: 20em;
+}
+
+@media (max-width: 30em) {
+  .cardLayout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .imageContainer {
+    max-width: 20em;
+    width: 80%;
+    aspect-ratio: 1/1;
+  }
+}
+
+@media (min-width: 30em) {
+  .cardLayout {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
+    overflow: hidden;
+  }
+}

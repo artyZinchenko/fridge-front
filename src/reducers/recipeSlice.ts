@@ -24,12 +24,9 @@ const recipeSlice = createSlice({
       );
       state.apiRecipes = [...state.apiRecipes, ...excludeMatching];
     },
-    setRandomRecipes(state, action: PayloadAction<Recipe[]>) {
-      state.randomRecipes = action.payload;
-    },
   },
 });
 
-export const { setRecipes, setRandomRecipes } = recipeSlice.actions;
+export const { setRecipes } = recipeSlice.actions;
 
 export default recipeSlice.reducer;

@@ -2,61 +2,53 @@ import { Box, Button, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import IngredList from './IngredList';
-import { FlexSpaceBetween, FlexVertical } from '../../styles/Global';
+import {
+  CenterChildElement,
+  FlexEnd,
+  FlexSpaceBetween,
+  FlexVertical,
+} from '../../styles/Global';
 import { resetSelected, selectAll } from '../../../reducers/ingredSlice';
 import { getRecipesByIngredients } from '../../../services/recipeServices';
 import { IngredApi, Recipe } from '../../../types';
 import { setRecipes } from '../../../reducers/recipeSlice';
 import { styled } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import IngredientSelect from './modal-components/SelectIngreds';
-import IngredModal from './modal-components/ModalIngreds';
+import IngredientSelect from './modal-components/SelectTextField';
+import IngredModal from './modal-components/RootModal';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import { usePantryIngredientsContext } from '../../../context/PantryIngredientsContext';
 
 const IngredsContainer = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
   borderRadius: '1em',
   padding: '0.5em',
+  width: '80%',
+  minHeight: '2em',
 }));
 
 const IngredSearch = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const dispatch = useAppDispatch();
+  const { pantryIngredients } = usePantryIngredientsContext();
   const navigate = useNavigate();
-  const { allIngreds }: { allIngreds: IngredApi[] } = useAppSelector(
-    (state) => state.ingredients
-  );
-  const ingredients = allIngreds.filter((el) => el.inPantry);
-  const getRecibesDisabled = !ingredients.find((el) => el.selected);
 
-  const handleSelect = () => {
-    dispatch(selectAll());
+  // must recieve array of ingredients {name:, id:}
+  const handleGetRecipes = () => {
+    const ingredString = pantryIngredients.map((el) => el.name).join(',+');
+    navigate('/recipes?q=ingreds', { state: ingredString });
   };
-
-  const handleGetRecipes = async () => {
-    try {
-      const ingredsForReq = ingredients.filter((el) => el.selected);
-      const ingredString = ingredsForReq.map((el) => el.name).join(',+');
-      const data = await getRecipesByIngredients(ingredString);
-      dispatch(setRecipes(data));
-      dispatch(resetSelected());
-      navigate('/recipes');
-    } catch (err: unknown) {
-      let errorMessage = 'Something went wrong.';
-      if (err instanceof Error) {
-        errorMessage += 'Error: ' + err.message;
-        console.log(errorMessage);
-      }
-    }
-  };
-
-  useEffect(() => {
-    console.log('effect');
-    dispatch(resetSelected());
-  }, [dispatch]);
 
   return (
-    <FlexVertical>
+    <FlexVertical className='py'>
+      <div className='px gap py'>
+        <Typography variant='h4'>Search with your ingredients</Typography>
+        <Typography variant='subtitle1'>
+          {' '}
+          Find delicious recipes with the ingredients you have! Our service
+          helps you save time and money by suggesting meals that use ingredients
+          in your fridge. Get new recipe ideas and reduce food waste.{' '}
+        </Typography>
+      </div>
       <IngredModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
       <Button variant='outlined' onClick={() => setModalOpen(true)}>
         <FlexSpaceBetween sx={{ gap: '0.5em' }}>
@@ -65,20 +57,21 @@ const IngredSearch = () => {
         </FlexSpaceBetween>
       </Button>
       <IngredsContainer>
-        <IngredList ingredients={ingredients} />
+        {pantryIngredients.length > 0 ? (
+          <IngredList />
+        ) : (
+          <Typography variant='subtitle2'>Your pantry is empty...</Typography>
+        )}
       </IngredsContainer>
-      <FlexSpaceBetween>
-        <Button variant='outlined' onClick={handleSelect}>
-          Select all
-        </Button>
+      <FlexEnd>
         <Button
           variant='contained'
-          disabled={getRecibesDisabled}
+          disabled={pantryIngredients.length < 1}
           onClick={handleGetRecipes}
         >
           Get recipes
         </Button>
-      </FlexSpaceBetween>
+      </FlexEnd>
     </FlexVertical>
   );
 };

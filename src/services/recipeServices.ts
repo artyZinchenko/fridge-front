@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { Recipe } from '../types';
+import { AutocompleteResult, Item, Recipe } from '../types';
+import errorHandler from './apiErrorHandler';
 
-const apiBaseUrl = 'http://localhost:3001/api';
+const apiBaseUrl = 'https://fridge-app-backend.onrender.com/api';
 
 export const getRecipesBySearch = async (
   searchOptionsObj: object
@@ -9,10 +10,7 @@ export const getRecipesBySearch = async (
   const response = await axios.post(`${apiBaseUrl}/recipes/complexSearch`, {
     options: searchOptionsObj,
   });
-  if (response instanceof Error) {
-    throw new Error(`Something went wrong ${response.message});
-    }`);
-  }
+
   return response.data;
 };
 
@@ -23,18 +21,36 @@ export const getRecipesByIngredients = async (
   const response = await axios.post(`${apiBaseUrl}/recipes/byIngredients`, {
     ingredNameString,
   });
-  if (response instanceof Error) {
-    throw new Error(`Something went wrong ${response.message});
-    }`);
-  }
+
   return response.data;
 };
 
 export const getBestRecipes = async (): Promise<Recipe[]> => {
   const response = await axios.get(`${apiBaseUrl}/recipes/randomRecipes`);
-  if (response instanceof Error) {
-    throw new Error(`Something went wrong ${response.message});
-    }`);
-  }
+
+  return response.data;
+};
+
+export const getRecipesByTitle = async (item: Item): Promise<Recipe[]> => {
+  const response = await axios.post(`${apiBaseUrl}/recipes/byTitle`, { item });
+
+  return response.data;
+};
+
+export const getRecipesById = async (ids: number[]): Promise<Recipe[]> => {
+  const response = await axios.post(`${apiBaseUrl}/recipes/byIds`, { ids });
+
+  return response.data;
+};
+
+export const autocomplete = async (
+  letters: string
+): Promise<AutocompleteResult[]> => {
+  if (letters.length < 1) return [];
+
+  const response = await axios.post(`${apiBaseUrl}/recipes/autocomplete`, {
+    letters,
+  });
+
   return response.data;
 };

@@ -1,0 +1,51 @@
+.homepage {
+  display: flex;
+  flex-direction: column;
+}
+
+.topContainer {
+  width: 100%;
+  max-width: 50em;
+  margin-inline: auto;
+}
+
+@media (max-width: 43em) {
+  .topContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+  }
+}
+
+@media (min-width: 43em) {
+  .topContainer {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+.spaceAround {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
+@media (max-width: 30em) {
+  .recipesList {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+  }
+}
+
+@media (max-width: 30em) {
+  .imageContainer {
+    max-width: 30em;
+  }
+}

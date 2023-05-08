@@ -3,9 +3,12 @@ import Ingred from '../../common/Ingred';
 import Box from '@mui/material/Box';
 import { Button, styled } from '@mui/material';
 import { toggleSelected } from '../../../reducers/ingredSlice';
-import { IngredApi } from '../../../types';
+import { IngredApi, IngredientId } from '../../../types';
 import { deleteIngreds } from '../../../reducers/ingredSlice';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { usePantryIngredientsContext } from '../../../context/PantryIngredientsContext';
+import { UserAuth } from '../../../context/AuthContext';
+import { deletePantryIngredients } from '../../../services/ingredientService';
 
 const IngredBox = styled(Box)(({ theme }) => ({
   background: 'transparent',
@@ -20,34 +23,35 @@ const IngredBox = styled(Box)(({ theme }) => ({
 }));
 
 type Props = {
-  ingredients: IngredApi[];
+  ingredients: IngredientId[];
 };
 
-const IngredList = ({ ingredients }: Props) => {
-  const { allIngreds }: { allIngreds: IngredApi[] } = useAppSelector(
-    (state) => state.ingredients
-  );
-  const dispatch = useAppDispatch();
+const IngredList = () => {
+  const { user, token } = UserAuth();
+  const { pantryIngredients, setPantryIngredients } =
+    usePantryIngredientsContext();
 
-  const selecetedIngreds = allIngreds.filter((ingred) => ingred.selected);
-
-  const handleClick = (ingred: IngredApi): void => {
-    dispatch(toggleSelected(ingred));
+  const handleClick = async (ingred: IngredientId) => {
+    if (user) {
+      deletePantryIngredients([ingred], token);
+    }
+    const newIngreds = pantryIngredients.filter((el) => el.id !== ingred.id);
+    setPantryIngredients(newIngreds);
   };
 
   return (
     <IngredBox>
-      {ingredients.map((ingred) => {
+      {pantryIngredients.map((ingred) => {
         return (
           <Ingred
-            active={ingred.selected}
             ingred={ingred}
             key={ingred.id}
-            handleClick={handleClick}
+            expanded={true}
+            handleClick={() => handleClick(ingred)}
           />
         );
       })}
-      {selecetedIngreds.length > 0 && (
+      {pantryIngredients.length > 0 && (
         <div
           style={{
             alignSelf: 'flex-start',
@@ -55,14 +59,7 @@ const IngredList = ({ ingredients }: Props) => {
             display: 'flex',
             justifyContent: 'flex-end',
           }}
-        >
-          <Button
-            sx={{ padding: 0, margin: 0 }}
-            onClick={() => dispatch(deleteIngreds())}
-          >
-            <DeleteOutlineIcon />
-          </Button>
-        </div>
+        ></div>
       )}
     </IngredBox>
   );

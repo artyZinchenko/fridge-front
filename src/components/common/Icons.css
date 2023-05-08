@@ -1,0 +1,26 @@
+.icon {
+  width: 8rem;
+  height: 2.5rem;
+  overflow: hidden;
+  padding: 0.2em 0.4em;
+}
+
+.icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.small-icon {
+  width: 2rem;
+  height: 2rem;
+  overflow: hidden;
+  object-fit: cover;
+  padding: 0.2em 0.6em;
+}
+
+.small-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

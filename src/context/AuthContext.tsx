@@ -16,30 +16,41 @@ import {
   signOut,
 } from 'firebase/auth';
 import { app } from '../firebase-config';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useModalContext } from './ModalContext';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface AuthContextValue {
   user: User | null;
   googleSignIn: () => void;
   logOut: () => void;
+  token: string;
+  resolvingUser: boolean;
+  setResolvingUser: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const AuthContext = createContext<AuthContextValue>({
   user: null,
   googleSignIn: () => {},
   logOut: () => {},
+  token: '',
+  resolvingUser: false,
+  setResolvingUser: () => {},
 });
 
 export const AuthContextProvider = () => {
   const [user, setUser] = useState<User | null>(null);
+  const [token, setToken] = useState('');
+  const [resolvingUser, setResolvingUser] = useState(true);
+
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { signInModalOpen, setSignInModalOpen } = useModalContext();
-  console.log('auth provider');
 
   const googleSignIn = async () => {
     const provider = new GoogleAuthProvider();
     const auth = getAuth(app);
+    setResolvingUser(true);
     signInWithRedirect(auth, provider);
   };
 
@@ -49,6 +60,8 @@ export const AuthContextProvider = () => {
     try {
       await signOut(auth);
       setUser(null);
+      setToken('');
+      queryClient.removeQueries({ queryKey: ['user-data'], exact: true });
       navigate('/');
     } catch (error) {
       console.log(error);
@@ -58,10 +71,17 @@ export const AuthContextProvider = () => {
   useEffect(() => {
     const auth = getAuth(app);
 
-    const unsubscribe = onAuthStateChanged(auth, (user: User | null) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user: User | null) => {
       if (user) {
         setUser(user);
-        console.log('OnAuthStateChange User: ', user);
+        try {
+          const token = await user.getIdToken();
+          setToken(token);
+        } catch (e) {
+          console.log(e);
+        }
+        setResolvingUser(false);
+        console.log('OnAuthStateChange User: ', user.displayName);
       }
     });
     return () => {
@@ -74,10 +94,9 @@ export const AuthContextProvider = () => {
 
     getRedirectResult(auth)
       .then((result) => {
-        console.log('redirect result');
+        setResolvingUser(false);
         result?.user && setUser(result.user);
         setSignInModalOpen(false);
-        navigate('/');
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -86,7 +105,16 @@ export const AuthContextProvider = () => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, googleSignIn, logOut }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        googleSignIn,
+        logOut,
+        token,
+        resolvingUser,
+        setResolvingUser,
+      }}
+    >
       <Outlet />
     </AuthContext.Provider>
   );

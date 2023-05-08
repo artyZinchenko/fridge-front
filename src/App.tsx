@@ -1,16 +1,19 @@
 import GlobalStyles from './components/styles/Global';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import ErrorPage from './error-page';
-import RecipesPage from './routes/RecipesPage';
-import Header from './components/common/Header';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  useLocation,
+} from 'react-router-dom';
+import ErrorPage from './routes/ErrorPage';
+import RecipesPage from './components/Recipes/SearchpageRecipes/RecipesPage';
+import Header from './components/Layout/MobileHeader';
 import theme from './components/styles/theme';
 import { ThemeProvider } from '@mui/material/styles';
-import Homepage from './routes/Homepage';
+import Homepage from './components/Homepage/Homepage';
 import { Container, styled } from '@mui/material';
-import { ModalOpenProvider } from './state/state';
+
 import SearchPage from './routes/SearchPage';
-import RecievedRecipes from './components/recipe-components/RecievedRecipes';
-import DetailedRecipe from './components/recipe-components/DetailedRecipe';
+import DetailedRecipe from './components/Recipes/DetailedRecipe/DetailedRecipe';
 import { useQueryClient } from '@tanstack/react-query/build/lib/QueryClientProvider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -19,65 +22,81 @@ import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
 import { AuthContextProvider } from './context/AuthContext';
 import ModalContextProvider from './context/ModalContext';
-import SignInModal from './components/user-components/SignInModal';
+import SignInModal from './components/User/SignInModal';
 import AccountPage from './routes/AccountPage';
 import ProtectedRoute from './routes/ProtectedRoute';
 import LoginPage from './routes/LoginPage';
+import Layout from './components/Layout/Layout';
+import RecipesPageLayout from './components/Recipes/SearchpageRecipes/RecipesPageLayout';
+import SavedRecipes from './components/User/SavedRecipes';
+import { ShopContextProvider } from './context/ShopContext';
+import IngredSearch from './components/search-components/ingreds-search/IngredSearch';
+import TypeSearch from './components/search-components/types-search/TypeSearch';
+import NotFound from './components/common/NotFound/NotFound';
+import { useEffect } from 'react';
 
 const router = createBrowserRouter([
   {
     element: <AuthContextProvider />,
+    errorElement: <NotFound />,
     children: [
       {
-        path: '/',
-        element: <Homepage />,
-        errorElement: <ErrorPage />,
-      },
-      {
-        path: 'recipes',
-        element: <RecipesPage />,
-      },
-      {
-        path: 'recipes/:id',
-        element: <DetailedRecipe />,
-      },
-      {
-        path: 'search',
-        element: <SearchPage />,
-      },
-      {
-        path: 'login',
-        element: <LoginPage />,
-      },
-      {
-        path: 'account',
-        element: <ProtectedRoute />,
+        element: <ShopContextProvider />,
+        children: [
+          {
+            element: <Layout />,
+            children: [
+              {
+                path: '/',
+                element: <Homepage />,
+              },
+              {
+                path: 'recipes',
+                element: <RecipesPageLayout />,
+              },
+              {
+                path: 'recipes/:id',
+                element: <DetailedRecipe />,
+              },
+              {
+                path: 'search',
+                element: <SearchPage />,
+                children: [
+                  { path: 'ingredients', element: <IngredSearch /> },
+                  { path: 'filter', element: <TypeSearch /> },
+                ],
+              },
+              {
+                path: 'login',
+                element: <LoginPage />,
+              },
+              {
+                path: 'account',
+                element: <ProtectedRoute />,
+              },
+              {
+                path: 'saved-recipes',
+                element: <SavedRecipes />,
+              },
+            ],
+          },
+        ],
       },
     ],
   },
 ]);
-
-const AppContainer = styled(Container)(({ theme }) => ({
-  width: '100%',
-  backgroundColor: theme.palette.background.default,
-  margin: '0',
-  padding: '0',
-}));
 
 const App = () => {
   const inputGlobalStyle = <GlobalStyles />;
   const queryClient = new QueryClient();
 
   return (
-    <div>
+    <div style={{ width: '100%', overflow: 'hidden' }}>
       <ModalContextProvider>
         <QueryClientProvider client={queryClient}>
           <ThemeProvider theme={theme}>
             {inputGlobalStyle}
-            <ReactQueryDevtools initialIsOpen={false} />
-            <AppContainer>
-              <RouterProvider router={router} />
-            </AppContainer>
+            <RouterProvider router={router} />
           </ThemeProvider>
         </QueryClientProvider>
       </ModalContextProvider>

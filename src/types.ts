@@ -10,12 +10,17 @@ export interface IngredApi {
   image?: string;
 }
 
+export interface IngredientId {
+  name: string;
+  id: number;
+}
+
 export interface ExtendedIngred {
   aisle: string;
-  amount: number;
   name: string;
   id: number;
   measures: Measures;
+  image: string;
 }
 
 export interface Measures {
@@ -49,6 +54,22 @@ export interface Recipe {
   extendedIngredients: ExtendedIngred[];
   summary: string;
   creditsText: string;
+}
+
+export interface UserData {
+  ingredients: ExtendedIngred[];
+  recipes: number[];
+  pantryIngredients: IngredientId[];
+}
+
+export interface Item {
+  id: number | null;
+  title: string;
+}
+
+export interface AutocompleteResult {
+  id: number;
+  title: string;
 }
 
 // export interface IngredFromApi {

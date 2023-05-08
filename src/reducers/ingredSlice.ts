@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { IngredApi } from '../types';
-import ingredsAPI from '../data/ingredsFormAPI';
+// import ingredsAPI from '../data/ingredsFormAPI';
 
 export interface IngredState {
   allIngreds: IngredApi[];
 }
 
 const initialState: IngredState = {
-  allIngreds: ingredsAPI,
+  allIngreds: [],
 };
 
 const ingredSlice = createSlice({
