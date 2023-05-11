@@ -20,6 +20,7 @@ const SavedRecipes = () => {
   const { data, isError } = useUserDataQuery();
 
   useEffect(() => {
+    console.log('Setting sign in modal on', user);
     !user && setSignInModalOpen(true);
   }, [user]);
 
@@ -37,6 +38,7 @@ const SavedRecipes = () => {
   }
 
   if (isError || !user) {
+    console.log('isError', isError, 'user', user);
     return (
       <div>
         <Typography>User is missing</Typography>

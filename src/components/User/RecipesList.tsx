@@ -4,6 +4,7 @@ import { getRecipesById } from '../../services/recipeServices';
 import SkeletonRecipeArray from '../common/SkeletonRecipeArray';
 import RecipeDisplay from '../Recipes/IndividualRecipes/RecipeDisplay';
 import { FlexVertical } from '../styles/Global';
+import styles from './User.module.scss';
 
 interface Props {
   ids: number[];
@@ -35,7 +36,7 @@ const RecipesList = ({ ids, token }: Props) => {
         <Skeleton animation='wave' variant='text' width='12em' height='2em' />
         <Box sx={{ paddingInline: '1em' }}>
           <div className='recipes-list'>
-            <SkeletonRecipeArray />;
+            <SkeletonRecipeArray />
           </div>
         </Box>
       </FlexVertical>
@@ -56,7 +57,7 @@ const RecipesList = ({ ids, token }: Props) => {
       <FlexVertical className='py flex-gap'>
         <Typography variant='h2'>Your recipes</Typography>
         <Box sx={{ paddingInline: '1em' }}>
-          <div className='recipes-list'>
+          <div className={styles.recipesList}>
             {data.map((el) => {
               return <RecipeDisplay recipe={el} key={el.id} />;
             })}

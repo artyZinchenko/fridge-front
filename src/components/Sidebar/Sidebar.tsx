@@ -19,7 +19,8 @@ const SidebarContent = () => {
   const { setSignInModalOpen } = useModalContext();
 
   useEffect(() => {
-    setSignInModalOpen(false);
+    console.log('setting modal off with sidebar');
+    pathname !== '/saved-recipes' && setSignInModalOpen(false);
   }, [pathname]);
 
   const activePage = useMemo(() => {

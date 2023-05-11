@@ -9,8 +9,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import 'firebaseui/dist/firebaseui.css';
 import { AuthContextProvider } from './context/AuthContext';
 import ModalContextProvider from './context/ModalContext';
-import ProtectedRoute from './routes/ProtectedRoute';
-import LoginPage from './routes/LoginPage';
 import Layout from './components/Layout/Layout';
 import RecipesPageLayout from './components/Recipes/SearchpageRecipes/RecipesPageLayout';
 import SavedRecipes from './components/User/SavedRecipes';
@@ -49,14 +47,6 @@ const router = createBrowserRouter([
                   { path: 'ingredients', element: <IngredSearch /> },
                   { path: 'filter', element: <TypeSearch /> },
                 ],
-              },
-              {
-                path: 'login',
-                element: <LoginPage />,
-              },
-              {
-                path: 'account',
-                element: <ProtectedRoute />,
               },
               {
                 path: 'saved-recipes',

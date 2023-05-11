@@ -8,14 +8,13 @@ import { UserAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ExpandedLogo } from '../common/Logos';
+import LinearProgress from '@mui/material/LinearProgress';
 
 const style = {
   width: '100vw',
   height: '100vh',
   bgcolor: 'background.paper',
 };
-
-//TODO: this component should be used for choosing sign in options
 
 const SignInModal = () => {
   const { resolvingUser } = UserAuth();
@@ -44,6 +43,7 @@ const SignInModal = () => {
         aria-describedby='modal-modal-description'
       >
         <Box sx={style}>
+          {resolvingUser && <LinearProgress color='primary' />}
           <FlexVertical>
             <FlexVertical sx={{ gap: '2em', paddingTop: '2em' }}>
               <ExpandedLogo />
