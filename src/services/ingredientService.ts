@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { ExtendedIngred, IngredientId } from '../types';
+import config from '../config';
 
-const apiBaseUrl = 'https://fridge-app-backend.onrender.com/api';
+const apiBaseUrl = config.apiBaseUrl;
 
 export const getPopularIngredients = async () => {
   const response = await axios.get(

@@ -75,7 +75,6 @@ export const AuthContextProvider = () => {
           console.log(e);
         }
         setResolvingUser(false);
-        console.log('OnAuthStateChange User: ', user.displayName);
       }
     });
     return () => {

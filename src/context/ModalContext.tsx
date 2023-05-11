@@ -41,7 +41,6 @@ const ModalContextProvider = ({ children }: Props) => {
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [searchByIngreds, setSearchByIngreds] = useState(true);
   const [recipeSearchOpen, setRecipeSeacrhOpen] = useState(false);
-  console.log('sign in modal', signInModalOpen);
 
   return (
     <ModalContext.Provider

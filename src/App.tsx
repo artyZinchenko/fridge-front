@@ -16,6 +16,7 @@ import { ShopContextProvider } from './context/ShopContext';
 import IngredSearch from './components/search-components/ingreds-search/IngredSearch';
 import TypeSearch from './components/search-components/types-search/TypeSearch';
 import NotFound from './components/common/NotFound/NotFound';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const router = createBrowserRouter([
   {
@@ -71,6 +72,7 @@ const App = () => {
           <ThemeProvider theme={theme}>
             {inputGlobalStyle}
             <RouterProvider router={router} />
+            <ReactQueryDevtools initialIsOpen={false} />
           </ThemeProvider>
         </QueryClientProvider>
       </ModalContextProvider>

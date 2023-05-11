@@ -20,7 +20,6 @@ const SavedRecipes = () => {
   const { data, isError } = useUserDataQuery();
 
   useEffect(() => {
-    console.log('Setting sign in modal on', user);
     !user && setSignInModalOpen(true);
   }, [user]);
 

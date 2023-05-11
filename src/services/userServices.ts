@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { UserData } from '../types';
+import config from '../config';
 
-const apiBaseUrl = 'https://fridge-app-backend.onrender.com/api/users';
+const apiBaseUrl = config.apiBaseUrl;
 
 export const userCall = async (token: string) => {
   const response = await axios.get(`${apiBaseUrl}`, {

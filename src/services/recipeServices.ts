@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { AutocompleteResult, Item, Recipe } from '../types';
+import config from '../config';
 
-const apiBaseUrl = 'https://fridge-app-backend.onrender.com/api';
+const apiBaseUrl = config.apiBaseUrl;
 
 export const getRecipesBySearch = async (
   searchOptionsObj: object
