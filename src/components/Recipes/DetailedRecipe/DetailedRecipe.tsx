@@ -133,6 +133,7 @@ const DetailedRecipe = () => {
                     saved={saved}
                     saveRecipe={handleSaveRecipe}
                     enabled={enabled}
+                    loggedIn={!!data}
                   />
                 </FlexSpaceBetween>
               </div>

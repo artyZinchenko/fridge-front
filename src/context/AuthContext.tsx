@@ -90,10 +90,12 @@ export const AuthContextProvider = () => {
         setResolvingUser(false);
         result?.user && setUser(result.user);
         setSignInModalOpen(false);
+        console.log('redirect result: ', result?.user.displayName);
       })
       .catch((error) => {
         const errorMessage = error.message;
         console.log(errorMessage);
+        console.log('redirect error');
       });
   }, []);
 

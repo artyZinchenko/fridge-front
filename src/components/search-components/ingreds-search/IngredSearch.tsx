@@ -38,6 +38,7 @@ const IngredSearch = () => {
           in your fridge. Get new recipe ideas and reduce food waste.{' '}
         </Typography>
       </div>
+
       <IngredModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
       <Button variant='outlined' onClick={() => setModalOpen(true)}>
         <FlexSpaceBetween sx={{ gap: '0.5em' }}>
@@ -49,7 +50,9 @@ const IngredSearch = () => {
         {pantryIngredients.length > 0 ? (
           <IngredList />
         ) : (
-          <Typography variant='subtitle2'>Your pantry is empty...</Typography>
+          <Typography variant='subtitle2' className='px py'>
+            Your pantry is empty...
+          </Typography>
         )}
       </IngredsContainer>
       <FlexEnd>

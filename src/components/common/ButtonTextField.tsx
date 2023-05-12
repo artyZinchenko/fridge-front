@@ -1,4 +1,4 @@
-import { TextField, InputAdornment } from '@mui/material';
+import { TextField, InputAdornment, useMediaQuery } from '@mui/material';
 import { useModalContext } from '../../context/ModalContext';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled } from '@mui/material';
@@ -23,6 +23,7 @@ const StyledButtonTextField = styled(TextField)(({ theme }) => ({
 }));
 
 const ButtonTextField = () => {
+  const matches = useMediaQuery('(min-width:40em)');
   const { setRecipeSeacrhOpen } = useModalContext();
   const handleClick = () => {
     setRecipeSeacrhOpen(true);
@@ -32,7 +33,9 @@ const ButtonTextField = () => {
     <StyledButtonTextField
       onClick={handleClick}
       disabled
-      placeholder='Search thousands of recipes...'
+      placeholder={
+        matches ? 'Search thousands of recipes...' : 'Thousands of recipes...'
+      }
       InputProps={{
         startAdornment: (
           <InputAdornment position='start'>

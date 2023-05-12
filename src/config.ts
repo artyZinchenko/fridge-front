@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === 'development') {
   };
 } else if (process.env.NODE_ENV === 'production') {
   config = {
-    apiBaseUrl: process.env.REACT_APP_BACK_URL,
+    apiBaseUrl: 'https://fridge-app-backend.onrender.com/api',
   };
 }
 

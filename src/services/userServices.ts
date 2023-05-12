@@ -5,7 +5,8 @@ import config from '../config';
 const apiBaseUrl = config.apiBaseUrl;
 
 export const userCall = async (token: string) => {
-  const response = await axios.get(`${apiBaseUrl}`, {
+  console.log(apiBaseUrl);
+  const response = await axios.get(`${apiBaseUrl}/users`, {
     headers: {
       Authorization: 'Bearer ' + token,
     },
@@ -15,7 +16,7 @@ export const userCall = async (token: string) => {
 };
 
 export const getUserData = async (token: string): Promise<UserData> => {
-  const response = await axios.get(`${apiBaseUrl}/user-data`, {
+  const response = await axios.get(`${apiBaseUrl}/users/user-data`, {
     headers: {
       Authorization: 'Bearer ' + token,
     },
@@ -28,7 +29,7 @@ export const getUserData = async (token: string): Promise<UserData> => {
 
 export const userSaveRecipe = async (token: string, id: number) => {
   const response = await axios.post(
-    `${apiBaseUrl}/save-recipe`,
+    `${apiBaseUrl}/users/save-recipe`,
     { id },
     {
       headers: {
